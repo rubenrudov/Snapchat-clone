@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "989476966523",
+    "project_id": "snapchat-f36db",
+    "storage_bucket": "snapchat-f36db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:989476966523:android:e77084a86720e6aac412de",
+        "android_client_info": {
+          "package_name": "com.snapchatclone"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "989476966523-686he7sqr98047kgrht0ghc5s8ephhvl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.snapchatclone",
+            "certificate_hash": "32e9076198d7467dd3b8477ca0c50e836e199322"
+          }
+        },
+        {
+          "client_id": "989476966523-35dkgpc8m0hkpisk6464nfim9gsbi5l8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBqQc5cipPx4IJu0KNCGxwReWedU1ka1BA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "989476966523-35dkgpc8m0hkpisk6464nfim9gsbi5l8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
