@@ -22,6 +22,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.snapchatclone.R;
 import com.snapchatclone.activities.DisplayActivity;
 import com.snapchatclone.activities.MainActivity;
+import com.snapchatclone.activities.UsersListActivity;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -40,7 +41,7 @@ public class CameraFragment extends Fragment {
     // UI components
     private SurfaceView surfaceView;
     private SurfaceHolder surfaceHolder;
-    private ImageButton logoutButton, takePictureButton;
+    private ImageButton logoutButton, searchButton, takePictureButton;
 
     @Nullable
     @Override
@@ -59,6 +60,15 @@ public class CameraFragment extends Fragment {
             }
         });
 
+        searchButton = v.findViewById(R.id.searchButton);
+        searchButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent findUsers = new Intent(getActivity(), UsersListActivity.class);
+                startActivity(findUsers);
+            }
+        });
+
         // Getting the capturing button id
         takePictureButton = v.findViewById(R.id.takePictureButton);
 
@@ -71,7 +81,7 @@ public class CameraFragment extends Fragment {
                     camera = Camera.open();
                     Camera.Parameters cameraParams = camera.getParameters(); // Deprecated after api 16, pay attention
                     camera.setDisplayOrientation(90); // Regular vision of camera (vertical/landscape visions..)
-                    cameraParams.setPreviewFrameRate(40); // 40 FPS
+                    cameraParams.setPreviewFrameRate(60); // 40 FPS
                     cameraParams.setFocusMode(Camera.Parameters.FOCUS_MODE_AUTO);
 
                     ArrayList<Camera.Size> sizes = (ArrayList<Camera.Size>) camera.getParameters().getSupportedPreviewSizes();
