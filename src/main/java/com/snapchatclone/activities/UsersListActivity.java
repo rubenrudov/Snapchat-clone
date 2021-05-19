@@ -87,31 +87,31 @@ public class UsersListActivity extends AppCompatActivity {
                 if (dataSnapshot.child("email").getValue() != null){
                     email = Objects.requireNonNull(dataSnapshot.child("email").getValue()).toString();
                 }
+
                 if (!email.equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())){
                     User f = new User(email, uid);
                     users.add(f);
                     adapter.notifyDataSetChanged();
                 }
+            }
+
+            @Override
+            public void onChildChanged(@NonNull DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildRemoved(@NonNull DataSnapshot dataSnapshot) {
 
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void onChildMoved(@NonNull DataSnapshot dataSnapshot, String s) {
 
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+            public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
@@ -122,4 +122,5 @@ public class UsersListActivity extends AppCompatActivity {
         this.users.clear();
         adapter.notifyItemRangeChanged(0, size);
     }
+
 }

@@ -20,6 +20,8 @@
         android:id="@+id/followButton"
         android:layout_width="45dp"
         android:layout_height="45dp"
+        android:textColor="@android:color/transparent"
+        android:text="follow"
         android:layout_alignParentEnd="true"
         android:background="@drawable/ic_follow"
         android:backgroundTint="@color/colorPrimaryDark"/>
