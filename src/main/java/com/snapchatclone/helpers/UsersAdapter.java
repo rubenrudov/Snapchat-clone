@@ -45,6 +45,16 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull final UserHolder holder, final int position) {
+        if(UserInfo.listFollowing.contains(users.get(position).getUid())){
+            holder.followButton.setText("unfollow");
+            holder.followButton.setBackgroundResource(R.drawable.ic_remove);
+        }
+
+        else{
+            holder.followButton.setText("follow");
+            holder.followButton.setBackgroundResource(R.drawable.ic_follow);
+        }
+
         holder.emailTextView.setText(this.users.get(0).getEmail());
         holder.followButton.setOnClickListener(new View.OnClickListener() {
             @SuppressLint("SetTextI18n")
@@ -55,7 +65,7 @@ public class UsersAdapter extends RecyclerView.Adapter<UsersAdapter.UserHolder> 
                 User u = users.get(position);
                 String uid = u.getUid();
 
-                if (holder.followButton.getText().toString().equals("follow")) {
+                if(!UserInfo.listFollowing.contains(users.get(position).getUid())){
                     holder.followButton.setBackgroundResource(R.drawable.ic_remove);
                     holder.followButton.setText("unfollow");
                     FirebaseDatabase.getInstance().getReference().child("users").child(id).child("following").child(uid).setValue(true);

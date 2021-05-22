@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.snapchatclone.R;
+import com.snapchatclone.helpers.UserInfo;
 
 import java.util.Objects;
 

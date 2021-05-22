@@ -8,6 +8,7 @@ import android.os.Bundle;
 
 import com.snapchatclone.R;
 import com.snapchatclone.helpers.FragmentAdapter;
+import com.snapchatclone.helpers.UserInfo;
 
 import java.util.Objects;
 
@@ -24,6 +25,9 @@ public class HomeActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         Objects.requireNonNull(getSupportActionBar()).hide();
+
+        UserInfo userInfo = new UserInfo();
+        userInfo.startFetching();
 
         // Components assignment
         viewPager = findViewById(R.id.swipeableViewPager);

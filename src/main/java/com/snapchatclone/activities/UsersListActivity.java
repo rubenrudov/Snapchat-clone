@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -50,7 +51,7 @@ public class UsersListActivity extends AppCompatActivity {
         searchButton .setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                listenForData();
+                getData();
             }
         });
 
@@ -70,27 +71,30 @@ public class UsersListActivity extends AppCompatActivity {
         ArrayList<User> data = new ArrayList<>();
 
         // Getting all the users from the database
-        listenForData();
+        getData();
 
         // Returning the data
         return data;
     }
 
-    private void listenForData() {
-        DatabaseReference usersDb = FirebaseDatabase.getInstance().getReference().child("users");
-        Query query = usersDb.orderByChild("email").startAt(usersEditText.getText().toString()).endAt(usersEditText.getText().toString() + "\uf8ff");
+    private void getData() {
+        DatabaseReference usersRef = FirebaseDatabase.getInstance().getReference().child("users");
+
+        // Selection of the users list
+        Query query = usersRef.orderByChild("email").startAt(usersEditText.getText().toString()).endAt(usersEditText.getText().toString() + "\uf8ff");
         query.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(@NonNull DataSnapshot dataSnapshot, String s) {
                 String email = "";
                 String uid = dataSnapshot.getRef().getKey();
+
                 if (dataSnapshot.child("email").getValue() != null){
                     email = Objects.requireNonNull(dataSnapshot.child("email").getValue()).toString();
                 }
 
                 if (!email.equals(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getEmail())){
-                    User f = new User(email, uid);
-                    users.add(f);
+                    User user = new User(email, uid, false);
+                    users.add(user);
                     adapter.notifyDataSetChanged();
                 }
             }
@@ -116,11 +120,4 @@ public class UsersListActivity extends AppCompatActivity {
             }
         });
     }
-
-    private void clear() {
-        int size = this.users.size();
-        this.users.clear();
-        adapter.notifyItemRangeChanged(0, size);
-    }
-
 }
