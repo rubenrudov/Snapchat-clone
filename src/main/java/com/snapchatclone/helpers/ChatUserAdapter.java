@@ -1,25 +1,25 @@
-package com.snapchatclone.helpers.models;
+package com.snapchatclone.helpers;
 
 import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import org.w3c.dom.Text;
+import com.snapchatclone.helpers.models.ChatUser;
+import com.snapchatclone.helpers.models.User;
 
 import java.util.ArrayList;
 
 public class ChatUserAdapter extends RecyclerView.Adapter<ChatUserAdapter.ChatHolder> {
 
     Context context;
-    ArrayList<User> users;
+    ArrayList<ChatUser> users;
 
-    public ChatUserAdapter(Context context, ArrayList<User> users) {
+    public ChatUserAdapter(Context context, ArrayList<ChatUser> users) {
         this.context = context;
         this.users = users;
     }
